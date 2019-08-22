@@ -1,4 +1,4 @@
-# `<input-knob>` custom element
+# `<input-knob>` ⟳ custom element
 
 A rotating, touch-sensitive knob that you can use like an
 `<input type="range">`.
@@ -104,7 +104,7 @@ things like provide a top marker for the knob.
 
 ## Demo
 
-Try the demo at https://input-knob.glitch.com
+Try the demo at https://input-knob.glitch.me
 
 ![An example of <input-knob> in green with an upward tick indicator and slider below](https://cdn.glitch.com/c3562722-7678-47b4-a7c3-5c26e9bc59ef%2Fintpu-knob-example.png?v=1566478428792)
 
