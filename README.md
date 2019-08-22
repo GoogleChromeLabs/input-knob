@@ -9,7 +9,8 @@ The `dist` directory contains the CommonJS module (`input-knob.cjs.js`), ES
 module (`input-knob.esm.js`) and UMD (`input-knob.umd.js`) variants of the
 element that you can use directly.
 
-Install via npm and include via the bundler of your choice:
+Install [via npm](https://www.npmjs.com/package/input-knob) and include via the
+bundler of your choice:
 
 ```sh
 npm install --save input-knob
@@ -110,9 +111,11 @@ Try the demo at https://input-knob.glitch.me
 
 ## Backwards compatibility
 
-For browsers that do not support custom elements, etc. you can use the [`webcomponents.js` polyfills](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs).
+For browsers that do not support custom elements, etc. you can use the
+[`webcomponents.js` polyfills](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs).
 
-For browsers that do not support Shadow Parts, the element will add a fallback class and `<span>` that can by styled.
+For browsers that do not support Shadow Parts, the element will add a fallback
+class and `<span>` that can by styled.
 
 ```css
 input-knob {
@@ -131,7 +134,7 @@ input-knob::part(rotator) {
   height: 150px;
 }
 
-input-knob.fallback>span.fallback {
+input-knob.fallback > span.fallback {
   display: block;
   box-sizing: border-box;
   background: lightblue;
