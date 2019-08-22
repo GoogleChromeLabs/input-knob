@@ -18,14 +18,14 @@
       touch-action: none;
       cursor: pointer;
     }
-    #container {
+    #rotator {
       display: block;
       --angle: 0rad;
       transform: rotate(var(--angle));
       will-change: transform;
     }
   </style>
-  <div id="container" part="container"><slot></slot></div>`;
+  <div id="rotator" part="rotator"><slot></slot></div>`;
 
   const TWO_PI = 2 * Math.PI;
 
@@ -35,7 +35,7 @@
 
       this.attachShadow({ mode: 'open' });
       this.shadowRoot.appendChild(template.content.cloneNode(true));
-      this._container = this.shadowRoot.getElementById('container');
+      this._rotator = this.shadowRoot.getElementById('rotator');
 
       this._drawState = this._drawState.bind(this);
       this._onMousedown = this._onMousedown.bind(this);
@@ -65,7 +65,7 @@
     }
 
     get scale() {
-      return this.hasAttribute('scale') ? this.getAttribute('scale') : 0;
+      return this.hasAttribute('scale') ? this.getAttribute('scale') : 1;
     }
 
     set scale(scale) {
@@ -89,7 +89,7 @@
     }
 
     connectedCallback() {
-      if (!this._container.part) {
+      if (!this._rotator.part) {
         const wrapper = document.createElement('span');
 
         while (this.childNodes.length > 0) {
@@ -127,7 +127,7 @@
     }
 
     _drawState() {
-      this._container.style.setProperty('--angle', `${this._angle}rad`);
+      this._rotator.style.setProperty('--angle', `${this._angle}rad`);
     }
 
     _rotationStart() {
