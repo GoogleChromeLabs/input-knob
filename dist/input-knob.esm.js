@@ -156,7 +156,8 @@ class InputKnob extends HTMLElement {
       }
     }
 
-    this._attemptedValue = (this._attemptedAngle / (TWO_PI / this.scale)) + (this.scale * this._attemptedRotations);
+    this._attemptedValue = (this._attemptedAngle / (TWO_PI / this.scale))
+      + (this.scale * this._attemptedRotations);
 
     if (
       (this.min === null || this._attemptedValue >= this.min) &&
@@ -165,6 +166,10 @@ class InputKnob extends HTMLElement {
       this._angle = this._attemptedAngle;
       this._rotations = this._attemptedRotations;
       this.value = this._attemptedValue;
+    } else if (this._attemptedValue < this.min) {
+      this.value = this.min;
+    } else if (this._attemptedValue > this.max) {
+      this.value = this.max;
     }
 
     const evt = new Event('knob-move-change', { bubbles: true });
