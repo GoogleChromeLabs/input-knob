@@ -6,7 +6,8 @@
   "module": "dist/input-knob.esm.js",
   "browser": "dist/input-knob.umd.js",
   "scripts": {
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "build:watch": "rollup -c -w"
   },
   "repository": {
     "type": "git",
@@ -24,7 +25,7 @@
   },
   "homepage": "https://github.com/GoogleChromeLabs/input-knob#readme",
   "devDependencies": {
-    "rollup": "^1.20.1",
+    "rollup": "^1.20.3",
     "rollup-plugin-terser": "^5.1.1"
   }
 }
