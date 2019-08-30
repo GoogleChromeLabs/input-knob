@@ -24,15 +24,19 @@ template.innerHTML = `
   </style>
   <div id="rotator" part="rotator"><slot></slot></div>`;
 
+window.ShadyCSS && ShadyCSS.prepareTemplate(template, 'input-knob');
+
 const TWO_PI = 2 * Math.PI;
 
 class InputKnob extends HTMLElement {
   constructor() {
     super();
 
+    window.ShadyCSS && ShadyCSS.styleElement(this);
     this.attachShadow({ mode: 'open' });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
     this._rotator = this.shadowRoot.getElementById('rotator');
+    this._fallback = null;
 
     this._drawState = this._drawState.bind(this);
     this._onMousedown = this._onMousedown.bind(this);
@@ -87,15 +91,18 @@ class InputKnob extends HTMLElement {
 
   connectedCallback() {
     if (!this._rotator.part) {
-      const wrapper = document.createElement('span');
+      this._fallback = document.createElement('span');
+      this._fallback.style.setProperty('--angle', `${this._angle}rad`);
+      this._fallback.style.setProperty('transform', `rotate(var(--angle))`);
+      this._fallback.style.setProperty('-webkit-tap-highlight-color', 'transparent');
 
       while (this.childNodes.length > 0) {
-        wrapper.appendChild(this.childNodes[0]);
+        this._fallback.appendChild(this.childNodes[0]);
       }
 
-      wrapper.classList.add('fallback');
+      this._fallback.classList.add('fallback');
       this.classList.add('fallback');
-      this.append(wrapper);
+      this.append(this._fallback);
     }
 
     this._drawState();
@@ -124,7 +131,13 @@ class InputKnob extends HTMLElement {
   }
 
   _drawState() {
-    this._rotator.style.setProperty('--angle', `${this._angle}rad`);
+    let target = this._rotator;
+
+    if (this._fallback !== null) {
+        target = this._fallback;
+    }
+
+    target.style.setProperty('--angle', `${this._angle}rad`);
   }
 
   _rotationStart() {
