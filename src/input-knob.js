@@ -140,8 +140,9 @@ export default class InputKnob extends HTMLElement {
 
   _rotationStart() {
     window.oncontextmenu = () => { return false; };
-    this._centerX = this.offsetLeft - this.scrollLeft + this.clientLeft + this.offsetWidth / 2;
-    this._centerY = this.offsetTop - this.scrollTop + this.clientTop + this.offsetHeight / 2;
+    const bounds = this.getBoundingClientRect();
+    this._centerX = bounds.left - this.scrollLeft + this.clientLeft + this.offsetWidth / 2;
+    this._centerY = bounds.top - this.scrollTop + this.clientTop + this.offsetHeight / 2;
     this._initialAngle = this._angle;
     this._attemptedAngle = this._angle;
     this._attemptedRotations = this._rotations;
