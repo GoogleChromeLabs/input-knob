@@ -1,6 +1,6 @@
 {
   "name": "input-knob",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "A rotating, touch-sensitive knob web component that acts like an <input type=\"range\">.",
   "main": "dist/input-knob.cjs.js",
   "module": "dist/input-knob.esm.js",
