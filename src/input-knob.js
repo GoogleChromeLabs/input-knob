@@ -18,6 +18,8 @@ template.innerHTML = `
       --angle: 0rad;
       transform: rotate(var(--angle));
       will-change: transform;
+      height: 100%;
+      width: 100%;
     }
   </style>
   <div id="rotator" part="rotator"><slot></slot></div>`;
